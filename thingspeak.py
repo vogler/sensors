@@ -17,20 +17,21 @@ def sendData(url, key, temp, pres, humi):
   req = urllib2.Request(url, postdata)
 
   log = time.strftime("%d-%m-%Y,%H:%M:%S") + ","
-  log = log + "{:.1f}C".format(temp) + ","
-  log = log + "{:.2f}mBar".format(pres) + ","
+  log += "{:.2f}C".format(temp) + ","
+  log += "{:.2f}mBar".format(pres) + ","
+  log += "{:.2f}per".format(humi)
 
   try:
     response = urllib2.urlopen(req, None, 5)
     html_string = response.read()
     response.close()
-    log = log + 'Update ' + html_string
+    log += 'Update ' + html_string
   except urllib2.HTTPError, e:
-    log = log + 'Server could not fulfill the request. Error code: ' + e.code
+    log += 'Server could not fulfill the request. Error code: ' + e.code
   except urllib2.URLError, e:
-    log = log + 'Failed to reach server. Reason: ' + e.reason
-  except:
-    log = log + 'Unknown error'
+    log += 'Failed to reach server. Reason: ' + e.reason
+  except Exception, e:
+    log += type(e).__name__ + ': ' + e.message
 
   print log
 
