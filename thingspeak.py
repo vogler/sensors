@@ -4,14 +4,20 @@ import time, os, sys
 import urllib, urllib2
 
 import bme280
+from tsl2561.TSL2561 import TSL2561
+
+tsl = TSL2561(0x39,"/dev/i2c-1")
+tsl.enable_autogain()
+tsl.set_time(0x00)
 
 class Config:
   interval = 1
   url = 'https://api.thingspeak.com/update'
   key = 'ABCDEFGH12345678'
 
-def sendData(url, key, temp, pres, humi):
-  values = { 'api_key': key, 'field1': temp, 'field2': pres, 'field3': humi }
+
+def sendData(url, key, temp, pres, humi, lux):
+  values = { 'api_key': key, 'field1': temp, 'field2': pres, 'field3': humi, 'field4': lux }
 
   postdata = urllib.urlencode(values)
   req = urllib2.Request(url, postdata)
@@ -19,7 +25,8 @@ def sendData(url, key, temp, pres, humi):
   log = time.strftime("%d-%m-%Y,%H:%M:%S") + ","
   log += "{:.2f}C".format(temp) + ","
   log += "{:.2f}mBar".format(pres) + ","
-  log += "{:.2f}per".format(humi)
+  log += "{:.2f}per".format(humi) + ","
+  log += "%slux" % lux + ","
 
   try:
     response = urllib2.urlopen(req, None, 5)
@@ -38,7 +45,7 @@ def sendData(url, key, temp, pres, humi):
 def main():
   while True:
     temperature,pressure,humidity = bme280.readBME280All()
-    sendData(Config.url, Config.key, temperature, pressure, humidity)
+    sendData(Config.url, Config.key, temperature, pressure, humidity, tsl.lux())
     sys.stdout.flush()
     time.sleep(Config.interval*60)
 
