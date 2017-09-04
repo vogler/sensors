@@ -1,23 +1,5 @@
 #!/usr/bin/python
-#--------------------------------------
-#    ___  ___  _ ____
-#   / _ \/ _ \(_) __/__  __ __
-#  / , _/ ___/ /\ \/ _ \/ // /
-# /_/|_/_/  /_/___/ .__/\_, /
-#                /_/   /___/
-#
-#           bme280.py
-#  Read data from a digital pressure sensor.
-#
-#  Official datasheet available from :
-#  https://www.bosch-sensortec.com/bst/products/all_products/bme280
-#
-# Author : Matt Hawkins
-# Date   : 25/07/2016
-#
-# http://www.raspberrypi-spy.co.uk/
-#
-#--------------------------------------
+# https://www.raspberrypi-spy.co.uk/2016/07/using-bme280-i2c-temperature-pressure-sensor-in-python/
 import smbus
 import time
 from ctypes import c_short
@@ -25,7 +7,6 @@ from ctypes import c_byte
 from ctypes import c_ubyte
 
 DEVICE = 0x76 # Default device I2C address
-
 
 bus = smbus.SMBus(1) # Rev 2 Pi, Pi 2 & Pi 3 uses bus 1
                      # Rev 1 Pi uses bus 0
@@ -115,7 +96,7 @@ def readBME280All(addr=DEVICE):
 
   # Wait in ms (Datasheet Appendix B: Measurement time and current calculation)
   wait_time = 1.25 + (2.3 * OVERSAMPLE_TEMP) + ((2.3 * OVERSAMPLE_PRES) + 0.575) + ((2.3 * OVERSAMPLE_HUM)+0.575)
-  time.sleep(wait_time/1000)  # Wait the required time  
+  time.sleep(wait_time/1000)  # Wait the required time
 
   # Read temperature/pressure/humidity
   data = bus.read_i2c_block_data(addr, REG_DATA, 8)
@@ -124,7 +105,8 @@ def readBME280All(addr=DEVICE):
   hum_raw = (data[6] << 8) | data[7]
 
   #Refine temperature
-  var1 = ((((temp_raw>>3)-(dig_T1<<1)))*(dig_T2)) >> 11  var2 = (((((temp_raw>>4) - (dig_T1)) * ((temp_raw>>4) - (dig_T1))) >> 12) * (dig_T3)) >> 14
+  var1 = ((((temp_raw>>3)-(dig_T1<<1)))*(dig_T2)) >> 11
+  var2 = (((((temp_raw>>4) - (dig_T1)) * ((temp_raw>>4) - (dig_T1))) >> 12) * (dig_T3)) >> 14
   t_fine = var1+var2
   temperature = float(((t_fine * 5) + 128) >> 8);
 
