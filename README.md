@@ -1,4 +1,5 @@
 # Log sensor data using RPi
+Example: https://thingspeak.com/channels/321821
 ## Sensors
 - BME280: temperature, pressure, humidity
 - TSL2561: visible light, infrared
