@@ -32,9 +32,9 @@ def sendData(url, key, temp, pres, humi, lux):
     response.close()
     log += 'Update ' + html_string
   except urllib2.HTTPError, e:
-    log += 'Server could not fulfill the request. Error code: ' + e.code
+    log += 'Server could not fulfill the request. Error code: ' + str(e.code)
   except urllib2.URLError, e:
-    log += 'Failed to reach server. Reason: ' + e.reason
+    log += 'Failed to reach server. Reason: ' + str(e.reason)
   except Exception, e:
     log += type(e).__name__ + ': ' + e.message
 
