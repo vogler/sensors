@@ -4,9 +4,9 @@ import time, os, sys
 import urllib, urllib2
 
 import bme280
-from tsl2561 import TSL2561
+from tsl2561 import TSL2561, TSL2561_GAIN_16X
 
-tsl = TSL2561()
+tsl = TSL2561(gain=TSL2561_GAIN_16X) # autogain=True
 
 class Config:
   interval = 1
@@ -14,8 +14,8 @@ class Config:
   key = 'ABCDEFGH12345678'
 
 
-def sendData(url, key, temp, pres, humi, lux):
-  values = { 'api_key': key, 'field1': temp, 'field2': pres, 'field3': humi, 'field4': lux }
+def sendData(url, key, temp, pres, humi, lux, bb, ir):
+  values = { 'api_key': key, 'field1': temp, 'field2': pres, 'field3': humi, 'field4': lux, 'field5': bb, 'field6': ir }
 
   postdata = urllib.urlencode(values)
   req = urllib2.Request(url, postdata)
@@ -25,6 +25,8 @@ def sendData(url, key, temp, pres, humi, lux):
   log += "{:.2f}mBar".format(pres) + ","
   log += "{:.2f}per".format(humi) + ","
   log += "%slux" % lux + ","
+  log += "%sbb" % bb + ","
+  log += "%sir" % ir + ","
 
   try:
     response = urllib2.urlopen(req, None, 5)
@@ -43,7 +45,9 @@ def sendData(url, key, temp, pres, humi, lux):
 def main():
   while True:
     temperature,pressure,humidity = bme280.readBME280All()
-    sendData(Config.url, Config.key, temperature, pressure, humidity, tsl.lux())
+    bb, ir = tsl._get_luminosity()
+    lux = tsl._calculate_lux(bb, ir)
+    sendData(Config.url, Config.key, temperature, pressure, humidity, lux, bb, ir)
     sys.stdout.flush()
     time.sleep(Config.interval*60)
 
