@@ -6,7 +6,7 @@ import urllib, urllib2
 import bme280
 from tsl2561 import TSL2561, TSL2561_GAIN_16X
 
-tsl = TSL2561(gain=TSL2561_GAIN_16X) # autogain=True
+tsl = TSL2561(gain=TSL2561_GAIN_16X, autogain=True)
 
 class Config:
   interval = 1
