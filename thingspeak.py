@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # https://www.raspberrypi-spy.co.uk/2015/06/basic-temperature-logging-to-the-internet-with-raspberry-pi/
 import time, os, sys
-import urllib, urllib2
+import urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse
 
 import bme280
 from tsl2561 import TSL2561, TSL2561_GAIN_16X
@@ -23,8 +23,8 @@ class Config:
 def postThingspeak(temp, pres, humi, lux, bb, ir):
   values = { 'api_key': Config.key, 'field1': temp, 'field2': pres, 'field3': humi, 'field4': lux, 'field5': bb, 'field6': ir }
 
-  postdata = urllib.urlencode(values)
-  req = urllib2.Request(Config.url, postdata)
+  postdata = urllib.parse.urlencode(values)
+  req = urllib.request.Request(Config.url, postdata)
 
   log = time.strftime("%d-%m-%Y,%H:%M:%S") + ","
   log += "{:.2f}C".format(temp) + ","
@@ -35,15 +35,15 @@ def postThingspeak(temp, pres, humi, lux, bb, ir):
   log += "%sir" % ir + ","
 
   try:
-    response = urllib2.urlopen(req, None, 5)
+    response = urllib.request.urlopen(req, None, 5)
     html_string = response.read()
     response.close()
     log += 'Update ' + html_string
-  except urllib2.HTTPError, e:
+  except urllib.error.HTTPError as e:
     log += 'Server could not fulfill the request. Error code: ' + str(e.code)
-  except urllib2.URLError, e:
+  except urllib.error.URLError as e:
     log += 'Failed to reach server. Reason: ' + str(e.reason)
-  except Exception, e:
+  except Exception as e:
     log += type(e).__name__ + ': ' + e.message
 
   print(log)
