@@ -14,10 +14,11 @@ client.connect("localhost")
 client.loop_start()
 import json
 
+import secrets
 class Config:
   interval = 10
   url = 'https://api.thingspeak.com/update'
-  key = 'ABCDEFGH12345678'
+  key = secrets.thingspeak
 
 
 def postThingspeak(temp, pres, humi, lux, bb, ir):
