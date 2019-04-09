@@ -5,6 +5,7 @@ Example: https://thingspeak.com/channels/321821
 - TSL2561: visible light, infrared
 
 ## Setup
+Use `pipenv install` or
 ~~~
 pip install Adafruit-GPIO
 pip install tsl2561

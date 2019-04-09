@@ -1,0 +1,48 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "e5f8c87257f9b119226d9cedf003983e3fdaeeda55f458d9a4531c8c3b4d68a2"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.5"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "adafruit-gpio": {
+            "hashes": [
+                "sha256:d6465b92c866c51ca8f3bc1e8f2ec36f5ccdb46d0fd54101c1109756d4a2dcd0"
+            ],
+            "index": "pypi",
+            "version": "==1.0.3"
+        },
+        "adafruit-pureio": {
+            "hashes": [
+                "sha256:e65cd929f1d8e109513ed1e457c2742bf4f15349c1a9b7f5b1e04191624d7488"
+            ],
+            "version": "==0.2.3"
+        },
+        "spidev": {
+            "hashes": [
+                "sha256:4314e52f573d95233c907f307558893313a8a606e197e77bb711526b0e179e80"
+            ],
+            "version": "==3.4"
+        },
+        "tsl2561": {
+            "hashes": [
+                "sha256:136ca72deff6c620be38b579834f88212ce8f31bfac4b0ec0b68bc3473e5c46a",
+                "sha256:67d7a400e38a70770fc6ba17b2fc6d789a0d663bf6ccb4b9ce554b1fd401ca5f"
+            ],
+            "index": "pypi",
+            "version": "==3.3"
+        }
+    },
+    "develop": {}
+}
