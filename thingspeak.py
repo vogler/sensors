@@ -51,7 +51,7 @@ def postThingspeak(temp, pres, humi, lux, bb, ir):
   sys.stdout.flush()
 
 def main():
-  i = 1
+  i = 6
   while True:
     temp,pres,humi = bme280.readBME280All()
     r_bme280 = { 'temperature': temp, 'pressure': pres, 'humidity': humi }
