@@ -24,7 +24,7 @@ class Config:
 def postThingspeak(temp, pres, humi, lux, bb, ir):
   values = { 'api_key': Config.key, 'field1': temp, 'field2': pres, 'field3': humi, 'field4': lux, 'field5': bb, 'field6': ir }
 
-  postdata = urllib.parse.urlencode(values)
+  postdata = urllib.parse.urlencode(values).encode('ascii')
   req = urllib.request.Request(Config.url, postdata)
 
   log = time.strftime("%d-%m-%Y,%H:%M:%S") + ","
@@ -37,7 +37,7 @@ def postThingspeak(temp, pres, humi, lux, bb, ir):
 
   try:
     response = urllib.request.urlopen(req, None, 5)
-    html_string = response.read()
+    html_string = response.read().decode('ascii')
     response.close()
     log += 'Update ' + html_string
   except urllib.error.HTTPError as e:
