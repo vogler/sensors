@@ -45,7 +45,7 @@ def postThingspeak(temp, pres, humi, lux, bb, ir):
   except urllib.error.URLError as e:
     log += 'Failed to reach server. Reason: ' + str(e.reason)
   except Exception as e:
-    log += type(e).__name__ + ': ' + e.message
+    log += type(e).__name__ + ': ' + str(e)
 
   print(log)
   sys.stdout.flush()
