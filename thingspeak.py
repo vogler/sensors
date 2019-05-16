@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # https://www.raspberrypi-spy.co.uk/2015/06/basic-temperature-logging-to-the-internet-with-raspberry-pi/
 import time, os, sys
 import urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse
