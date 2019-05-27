@@ -1,0 +1,6 @@
+[submodule "mh-z19"]
+	path = mh-z19
+	url = https://github.com/vogler/mh-z19.git
+[submodule "python-pms7003"]
+	path = python-pms7003
+	url = https://github.com/vogler/python-pms7003.git
