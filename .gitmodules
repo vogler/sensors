@@ -4,3 +4,6 @@
 [submodule "python-pms7003"]
 	path = python-pms7003
 	url = https://github.com/vogler/python-pms7003.git
+[submodule "FlowMeter"]
+	path = FlowMeter
+	url = https://github.com/vogler/FlowMeter.git
