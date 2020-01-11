@@ -1,7 +1,7 @@
 # Log sensor data using RPi and ESP8266
 Example: https://thingspeak.com/channels/321821
 
-Sensors -> mosquitto -> Telegram -> InfluxDB -> Chronograf:
+[Sensors](https://github.com/vogler/sensors) -> [MQTT](https://mosquitto.org/) -> [Telegraf](https://github.com/influxdata/telegraf) -> [InfluxDB](https://github.com/influxdata/influxdb) -> [Chronograf](https://github.com/influxdata/chronograf):
 ![Chronograf dashboard](https://i.imgur.com/KdjZi8j.png)
 
 ## Sensors
