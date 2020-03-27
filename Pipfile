@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 tsl2561 = "*"
 adafruit-gpio = "*"
+smbus = "*"
+paho-mqtt = "*"
 
 [requires]
 python_version = "3.5"

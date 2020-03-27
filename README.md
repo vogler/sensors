@@ -17,14 +17,10 @@ Example: https://thingspeak.com/channels/321821
 
 ## Setup
 
-Use `pipenv install` or
-~~~
-pip install Adafruit-GPIO
-pip install tsl2561
-~~~
+Install dependencies with `pipenv install`.
 Register at www.thingspeak.com and replace `Config.key` in `thingspeak.py`.
 
 Run with
 ~~~
-python thingspeak.py 2>&1 | tee -a thingspeak.log
+./thingspeak.py 2>&1 | tee -a thingspeak.log
 ~~~
