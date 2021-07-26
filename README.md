@@ -12,6 +12,7 @@ Example: https://thingspeak.com/channels/321821
 | MH-Z19B   	| CO2 (ppm)                                                           	| UART (USB)  	| RPi3          	| MQTT                 	|
 | PMS7003   	| particle matter (counts and PM [1, 2.5, 10] ug/m³)                  	| UART (pins) 	| RPi3          	| MQTT                 	|
 | FlowMeter 	| shower usage via Hall effect flow sensor (ml/s, total_ml, duration) 	| GPIO ISR    	| Wemos D1 mini 	| MQTT                 	|
+| BloodPressureWifi 	| read Beurer blood pressure monitor (hiBP, loBP, HR)         	| SPI EEPROM    	| Wemos D1 mini 	| MQTT                 	|
 
 [thingspeak.py](thingspeak.py) only reads BME280 and TSL2561. The other sensors run as standalone services (see their repos).
 

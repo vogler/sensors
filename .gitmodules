@@ -7,3 +7,9 @@
 [submodule "FlowMeter"]
 	path = FlowMeter
 	url = https://github.com/vogler/FlowMeter.git
+[submodule "BloodPressureWifi"]
+	path = BloodPressureWifi
+	url = https://github.com/vogler/BloodPressureWifi.git
+[submodule "esp-doorbell"]
+	path = esp-doorbell
+	url = https://github.com/vogler/esp-doorbell.git
