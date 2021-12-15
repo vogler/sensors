@@ -13,3 +13,6 @@
 [submodule "esp-doorbell"]
 	path = esp-doorbell
 	url = https://github.com/vogler/esp-doorbell.git
+[submodule "AS7265x"]
+	path = AS7265x
+	url = https://github.com/vogler/AS7265x.git
